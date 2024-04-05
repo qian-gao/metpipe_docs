@@ -1,0 +1,40 @@
+site_name: metpipe
+theme:
+    name: material
+    custom_dir: overrides
+    features:
+        - navigation.tabs
+        - navigation.footer
+    icon:
+        repo: fontawesome/brands/github
+        logo: material/library-outline
+    favicon: material/library-shelves
+    
+
+nav:
+    - Home: 'index.md'
+    - 'Data explorer': 'data_explorer.md'
+    - Preprocessing pipeline: 
+      - Normalization: preprocessing_pipeline/Normalization.md
+      - Missing imputation: preprocessing_pipeline/Missing_imputation.md
+
+extra_css:
+  - css/extra.css
+
+extra:
+  generator: false
+
+markdown_extensions:
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+# Repository
+repo_url: https://github.com/qian-gao/metpipe_documentation
+repo_name: qian-gao/metpipe_documentation
+repo_counts: true
+
