@@ -7,16 +7,52 @@ theme:
         - navigation.footer
     icon:
         repo: fontawesome/brands/github
-        logo: material/library-outline
+        logo: material/forest-outline #material/library-outline
     favicon: material/library-shelves
     
 
 nav:
-    - Home: 'index.md'
-    - 'Data explorer': 'data_explorer.md'
-    - Preprocessing pipeline: 
-      - Normalization: preprocessing_pipeline/Normalization.md
-      - Missing imputation: preprocessing_pipeline/Missing_imputation.md
+  - Home: 'index.md'
+  - Workflow: 
+    - Introduction: workflow/introduction.md 
+    - Randomization: workflow/randomization.md
+    - Data conversion: workflow/data_conversion.md
+    - LC-MS data structure: workflow/data_structure.md 
+    - QC of internal standards: workflow/qc_is.md
+    - Retention time prediction: workflow/rt_prediction.md
+    - Preprocessing: workflow/preprocessing.md
+    - Peak grouping: workflow/peak_grouping.md
+    - Peak cleaning: workflow/clean.md
+    - Missing imputation: workflow/missing_imputation.md
+    - Normalization: workflow/normalization.md
+    - Merge peaklist: workflow/merge.md
+    - Calibration: workflow/calibration.md
+
+  - metpipe:
+    - Introduction: metpipe/introduction.md 
+    - Set up: metpipe/setup.md
+    - Preprocessing: 
+      - Preprocessing: metpipe/preprocessing.md
+      - Targeted preprocessing: metpipe/tar.md
+      - Untargeted preprocessing: 
+        - XCMS: metpipe/untar_xcms.md
+        - MS-DIAL: metpipe/untar_msdial.md
+        - MZmine: metpipe/untar_mzmine.md
+      - Targeted untargeted preprocessing: metpipe/tar_untar.md
+    - Peak cleaning: metpipe/clean.md
+    - Normalization: metpipe/normalization.md
+    - Merge peaklist: metpipe/merge.md
+    - Generate QC report: metpipe/qc_report.md
+
+  - Data explorer:
+    - Introduction: data_explorer/introduction.md
+    - Randomization: data_explorer/generate_sample_list.md 
+    - Match library: data_explorer/match_library.md
+    - Retention time mapping: data_explorer/rt_mapping.md
+    - Calibration: data_explorer/calibration.md
+    - Upload peaklist: data_explorer/upload.md
+    - Preprocessing: data_explorer/preprocessing.md
+
 
 extra_css:
   - css/extra.css
@@ -34,7 +70,7 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 # Repository
-repo_url: https://github.com/qian-gao/metpipe_documentation
-repo_name: qian-gao/metpipe_documentation
-repo_counts: true
+repo_url: https://github.com/qian-gao/metpipe_docs
+repo_name: qian-gao/metpipe_docs
+#repo_counts: true
 
