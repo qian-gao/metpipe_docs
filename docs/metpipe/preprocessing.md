@@ -1,6 +1,6 @@
 # Preprocessing
 
-### Related parameters in software:
+## Some common parameters
 
 - **m/z tolerance**:
 - **RT tolerance**:

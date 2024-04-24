@@ -1,4 +1,4 @@
-# temp
+# Merge peaklist and map info
 
 
 

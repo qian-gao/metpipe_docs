@@ -36,7 +36,7 @@ Example of deconvolution: three overlapping peaks were separated, making use of 
 ### MS1 level
 Based on m/z and RT:
 
-![](image/preprocessing/identification_1.gif)
+![](image/preprocessing/identify_ms1.jpg)
 
 
 ### MS2 level
