@@ -26,7 +26,7 @@ nav:
     - Missing imputation: workflow/missing_imputation.md
     - Normalization: workflow/normalization.md
     - Merge peaklist: workflow/merge.md
-    - Calibration: workflow/calibration.md
+    - Quantification: workflow/quantification.md
 
   - metpipe:
     - Introduction: metpipe/introduction.md 
@@ -46,7 +46,8 @@ nav:
 
   - Data explorer:
     - Introduction: data_explorer/introduction.md
-    - Randomization: data_explorer/generate_sample_list.md 
+    - Randomization: data_explorer/randomization.md 
+    - Generate sample list: data_explorer/generate_sample_list.md 
     - Match library: data_explorer/match_library.md
     - Retention time mapping: data_explorer/rt_mapping.md
     - Calibration: data_explorer/calibration.md
