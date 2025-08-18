@@ -33,8 +33,8 @@ nav:
     - Set up: metpipe/setup.md
     - Preprocessing: 
       - Preprocessing: metpipe/preprocessing.md
-      - Targeted preprocessing: metpipe/tar.md
-      - Untargeted preprocessing: 
+      - Targeted peak picking: metpipe/tar.md
+      - Untargeted peak picking: 
         - XCMS: metpipe/untar_xcms.md
         - MS-DIAL: metpipe/untar_msdial.md
         - MZmine: metpipe/untar_mzmine.md
