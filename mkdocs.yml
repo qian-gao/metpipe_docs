@@ -30,19 +30,19 @@ nav:
 
   - metpipe:
     - Introduction: metpipe/introduction.md 
-    - Set up: metpipe/setup.md
-    - Preprocessing: 
-      - Preprocessing: metpipe/preprocessing.md
-      - Targeted peak picking: metpipe/tar.md
-      - Untargeted peak picking: 
-        - XCMS: metpipe/untar_xcms.md
-        - MS-DIAL: metpipe/untar_msdial.md
-        - MZmine: metpipe/untar_mzmine.md
-      - Targeted untargeted preprocessing: metpipe/tar_untar.md
-    - Peak cleaning: metpipe/clean.md
-    - Normalization: metpipe/normalization.md
-    - Merge peaklist: metpipe/merge.md
-    - Generate QC report: metpipe/qc_report.md
+    - Untargeted preprocessing: metpipe/preprocessing.md
+
+    #   - Preprocessing: 
+    #   - Targeted peak picking: metpipe/tar.md
+    #   - Untargeted peak picking: 
+    #     - XCMS: metpipe/untar_xcms.md
+    #     - MS-DIAL: metpipe/untar_msdial.md
+    #     - MZmine: metpipe/untar_mzmine.md
+    #   - Targeted untargeted preprocessing: metpipe/tar_untar.md
+    # - Peak cleaning: metpipe/clean.md
+    # - Normalization: metpipe/normalization.md
+    # - Merge peaklist: metpipe/merge.md
+    # - Generate QC report: metpipe/qc_report.md
 
   - Data explorer:
     - Introduction: data_explorer/introduction.md
