@@ -23,12 +23,12 @@ For non-standardized workflows, the core processing steps are the same as for th
 ## Step by step guidance
 
 ### Input
-The input is the subfolder name where the raw/mzML data is stored. The pipeline will automatically detect all the files in the subfolder and generate the parameters needed for processing. The in-house library and public spectral libraries will be automatically linked based on the assay and method. The pipeline will also detect the sample types (e.g., BL, PO, NIST) and running sequence based on the standardized sample naming convention. The pipeline current supports the following assays and methods:
+The input is the subfolder name where the raw/mzML data is stored. The pipeline will automatically detect all the files in the subfolder and generate the parameters needed for processing. The in-house library and public spectral libraries will be automatically linked based on the assay and method. The pipeline will also detect the sample types (e.g., BL, PO, NIST) and running sequence based on the standardized sample naming convention. The pipeline current supports the following assays and methods:  
 
 - Assays: Lipidomics (LIPS, LIPL), Metabolomics (RP, zHILIC)
 - Methods: FDDA*, PASEF
 
-* Currently FDDA files need to be converted to mzML format before processing.
+\* Currently FDDA files need to be converted to mzML format before processing.
 
 With the standardized naming convention, no further input is needed from the user.
 
