@@ -15,21 +15,22 @@ The pipeline current supports the following assays and methods:
 ### Default library setting
 The pipeline will automatically link the in-house MS1/MS2 libraries and public spectral libraries based on the assay detected from the subfolder name. The default library settings are as follows:
 
-- Lipidomics (LIPS, LIPL):
-  - In-house MS1 library (internal standards only)
+#### Lipidomics (LIPS, LIPL):
+- In-house MS1 library (internal standards only)
     - MP_ISTD_mzmine_Lipidomics_4min_pos_20250507.csv
     - MP_ISTD_mzmine_Lipidomics_4min_neg_20250507.csv
     - MP_ISTD_mzmine_Lipidomics_10min_pos_20250507.csv
     - MP_ISTD_mzmine_Lipidomics_10min_neg_20250507.csv
-  - Public spectral library
+- Public spectral library
     - MoNA-export-LipidBlast_2022.msp
 
-- Metabolomics (zHILIC):
-  - In-house metabolite library (internal standards and standards)
+
+#### Metabolomics (zHILIC):
+- In-house metabolite library (internal standards and standards)
     - MP_library_mzmine_zHILIC_neg_20251023.csv
-  - In-house MS2 library
+- In-house MS2 library
     - MP_metabolomics_RP_60.msp
-  - Public spectral library
+- Public spectral library
     - MSMS-Public_experimentspectra-VS19.msp
 
 ### Example for plasma lipidomics analysis with short PASEF method
