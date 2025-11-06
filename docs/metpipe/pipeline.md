@@ -5,8 +5,6 @@
 
 The only input needed is the subfolder name where the raw/mzML data is stored (e.g. PL_LIPS_PASEF). The subfolder naming should follow the standard naming convention as shown in the figure below (i.e. Matrix_Assay_method). The data file naming should follow the standard naming convention (i.e. Project ID_Assay Method Polarity_Date_Run Seq_Sample Name_Extraction Replicate_Technical Replicate, e.g. MP000_LIPSPASEFp_09092025_004_BL_1_1).
 
-![Project subfolder naming](image/project_subfolder_naming.png)
-
 #### Processing
 
 The workflow is executed in two sequential steps:
@@ -23,12 +21,7 @@ For non-standardized workflows, the core processing steps are the same as for th
 ## Step by step guidance
 
 ### Input
-The input is the subfolder name where the raw/mzML data is stored. The pipeline will automatically detect all the files in the subfolder and generate the parameters needed for processing. The in-house library and public spectral libraries will be automatically linked based on the assay and method. The pipeline will also detect the sample types (e.g., BL, PO, NIST) and running sequence based on the standardized sample naming convention. The pipeline current supports the following assays and methods:  
-
-- Assays: Lipidomics (LIPS, LIPL), Metabolomics (RP, zHILIC)
-- Methods: FDDA*, PASEF
-
-\* Currently FDDA files need to be converted to mzML format before processing.
+The input is the subfolder name where the raw/mzML data is stored. The pipeline will automatically detect all the files in the subfolder and generate the parameters needed for processing. The in-house library and public spectral libraries will be automatically linked based on the assay and method. The pipeline will also detect the sample types (e.g., BL, PO, NIST) and running sequence based on the standardized sample naming convention. 
 
 With the standardized naming convention, no further input is needed from the user.
 

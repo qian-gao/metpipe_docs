@@ -30,7 +30,8 @@ nav:
 
   - metpipe:
     - Introduction: metpipe/introduction.md 
-    - Untargeted preprocessing: metpipe/preprocessing.md
+    - Set up input folder: metpipe/setup_input_folder.md
+    - Processing pipeline: metpipe/pipeline.md
 
     #   - Preprocessing: 
     #   - Targeted peak picking: metpipe/tar.md

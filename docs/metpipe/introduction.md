@@ -17,12 +17,12 @@ Currently Docker has been setup in the following workstations:
 ## Special notes for usage in KU workstations
 
 - The procedure to start Docker
-    - 1. **Request Admin Privileges** in Heimdal Agent
-    - 2. Right click on **Docker Desktop** and choose **Run as administrator**
+    - **Request Admin Privileges** in Heimdal Agent
+    - Right click on **Docker Desktop** and choose **Run as administrator**
 
 - Before start, check if Disk image location is setup in a drive other than C drive
-    - 1. Open Docker, click Settings -> Recsources -> Advanced
-    - 2. Check **Disk image location**, it should not be in C drive. It should be in e.g. E:\DockerData\DockerDesktopWSL
+    - Open Docker, click Settings -> Recsources -> Advanced
+    - Check **Disk image location**, it should not be in C drive. It should be in e.g. E:\DockerData\DockerDesktopWSL
 
 - After running, quit Docker before log out
 
