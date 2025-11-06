@@ -14,6 +14,7 @@ The pipeline current supports the following assays and methods:
 
 ### Default library setting
 The pipeline will automatically link the in-house MS1/MS2 libraries and public spectral libraries based on the assay detected from the subfolder name. The default library settings are as follows:
+
 - Lipidomics (LIPS, LIPL):
   - In-house MS1 library (internal standards only)
     - MP_ISTD_mzmine_Lipidomics_4min_pos_20250507.csv
