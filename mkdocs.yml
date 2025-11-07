@@ -14,24 +14,28 @@ theme:
 nav:
   - Home: 'index.md'
   - Workflow: 
-    - Introduction: workflow/introduction.md 
-    - Randomization: workflow/randomization.md
-    - Data conversion: workflow/data_conversion.md
-    - LC-MS data structure: workflow/data_structure.md 
-    - QC of internal standards: workflow/qc_is.md
-    - Retention time prediction: workflow/rt_prediction.md
-    - Preprocessing: workflow/preprocessing.md
-    - Peak grouping: workflow/peak_grouping.md
-    - Peak cleaning: workflow/clean.md
-    - Missing imputation: workflow/missing_imputation.md
-    - Normalization: workflow/normalization.md
-    - Merge peaklist: workflow/merge.md
-    - Quantification: workflow/quantification.md
+    - workflow/introduction.md 
+    - General guidelines:
+      - Randomization: workflow/randomization.md
+      - QC samples steup: workflow/qc_setup.md
+      - Data conversion: workflow/data_conversion.md
+      - LC-MS data structure: workflow/data_structure.md 
+    - Untargeted data processing:
+      - Quality control: workflow/qc_is.md
+      - Retention time prediction: workflow/rt_prediction.md
+      - Preprocessing: workflow/preprocessing.md
+      - Peak grouping: workflow/peak_grouping.md
+      - Peak cleaning: workflow/clean.md
+      - Missing imputation: workflow/missing_imputation.md
+      - Normalization: workflow/normalization.md
+      - Merge peaklist: workflow/merge.md
+    - Targeted data processing:
+      - Quantification: workflow/quantification.md
 
   - metpipe:
-    - Introduction: metpipe/introduction.md 
+    - metpipe/introduction.md 
     - Set up input folder: metpipe/setup_input_folder.md
-    - Processing pipeline: metpipe/pipeline.md
+    - Untargeted processing pipeline: metpipe/pipeline.md
 
     #   - Preprocessing: 
     #   - Targeted peak picking: metpipe/tar.md

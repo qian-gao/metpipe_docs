@@ -79,7 +79,12 @@ The `config.yml` file contains all the necessary parameters for the subsequent p
    
 - filter_by_missing_feature_pct: filter features by missing percentage across all specific type of samples, e.g. 50 (meaning features with less than 50% missing values across all specific type of samples will be kept).
 - filter_by_missing_sample_type: sample types used for missing value filtering, e.g. PO (meaning only PO samples will be used for missing value filtering).
-- outliers.sample: sample names to be considered as outliers and removed from further processing, e.g. BL_1_3.
+- outliers.sample: sample names to be considered as outliers and removed from further processing, e.g. BL_1_3, PO_1_1.  
+```yaml
+- BL_1_3
+- PO_1_1
+```
+
 - clean.po.sample.to.use: sample types used for cleaning duplicate features, e.g. PO (meaning only PO samples will be used for cleaning duplicate features)
 
 ##### Imputation
