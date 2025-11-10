@@ -8,7 +8,8 @@ This section introduces the use of **metpipe** for metabolomics and lipidomics d
 
 - **Docker** version 4.49.0 or higher
 
-Currently Docker has been setup in the following workstations:
+Currently Docker has been setup in the following workstations:  
+
 - Olaf
 - Archibald 
 - Simba
