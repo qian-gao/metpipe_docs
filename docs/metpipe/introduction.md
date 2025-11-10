@@ -31,5 +31,6 @@ Current version: 0.4
 
 ## Database
 
-Current libraries used in the workflow can be found in: N:\SUN-CBMR-Metabolomics\Workflow\metpipe_library. 
+Current libraries used in the workflow can be found in:   
+N:\SUN-CBMR-Metabolomics\Workflow\metpipe_library. 
 
