@@ -30,7 +30,7 @@ To prepare the workflow, run the following command in powershell:
 ```powershell
 docker run -it `
     -v E:/:/mnt/e `
-    qiangao/metpipe:0.1 `
+    qiangao/metpipe:0.5 `
     Rscript /wd/prepare_standard_workflow.R --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF"
 ```
 This command mounts the E: drive to the Docker container and runs the `prepare_standard_workflow.R` script, specifying the raw data location. Adjust the raw folder paths and the dirve where the raw data is stored as necessary for your system. Note that the raw folder path inside the Docker container should start with `/mnt/` and use forward slashes.
@@ -125,7 +125,7 @@ To execute the full processing workflow, run the following command in powershell
 ```powershell
 docker run -it `
     -v E:/:/mnt/e `
-    qiangao/metpipe:0.1 `
+    qiangao/metpipe:0.5 `
     Rscript /wd/run_workflow.R --raw "/mnt/e/Projects/MP_workshop/peaktable/PL_LIPS_PASEF/config.yml"
 ```
 In this step, the `run_workflow.R` script is executed, using the `config.yml` file generated in the previous step. Adjust the paths as necessary for your system. The processing logs and result files will be written to the output directory specified in config.yml.
@@ -158,13 +158,22 @@ To run the entire workflow in a single step, you can use the following command i
 ```powershell
 docker run -it `
     -v E:/:/mnt/e `
-    qiangao/metpipe:0.1 `
+    qiangao/metpipe:0.5 `
     Rscript /wd/prepare_run_workflow.R --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF"
 ```
 
 ## Notes for non-standardized workflow
+If your data contains more qc types than the standardized ones (e.g. BL, PO, NIST, CP), you could prepare non-standardized workflow by running the following command in powershell: 
 
-The 
+```powershell
+docker run -it `
+    -v E:/:/mnt/e `
+    qiangao/metpipe:0.5 `
+    Rscript /wd/prepare_workflow.R --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF" --qc "BL,PO,NIST,CP,ABC,DEF"
+```
+
+`--qc` argument allows users to specify all qc types included in the data, separated by commas. After running this command, a default `config.yml` file will be generated in the output directory. Check and edit the parameters in `config.yml` as needed before running the `run_workflow.R` script.
+
 
 
 
