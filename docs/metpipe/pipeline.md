@@ -18,7 +18,7 @@ The workflow is executed in two sequential steps:
 ### Non-standardized workflow
 For non-standardized workflows, the core processing steps are the same as for the standardized workflow. prepare_workflow still generates a default config.yml, but users may edit its parameters to accommodate non-standard inputs (for example, to point to an alternative library, change preprocessing or filtering thresholds, or modify assay-specific settings).
 
-## Step by step guidance
+## Step by step guidance for standardized workflow
 
 ### Input
 The input is the subfolder name where the raw/mzML data is stored. The pipeline will automatically detect all the files in the subfolder and generate the parameters needed for processing. The in-house library and public spectral libraries will be automatically linked based on the assay and method. The pipeline will also detect the sample types (e.g., BL, PO, NIST) and running sequence based on the standardized sample naming convention. 
@@ -130,6 +130,29 @@ docker run -it `
 ```
 In this step, the `run_workflow.R` script is executed, using the `config.yml` file generated in the previous step. Adjust the paths as necessary for your system. The processing logs and result files will be written to the output directory specified in config.yml.
 
+### Re-run workflow
+#### Re-run MZMine preprocessing with modified parameters
+In the initial run of the workflow, default MZMine processing parameters are generated and saved in pos/neg folders inside the result folder. To modify and re-run MZMine preprocessing with custom parameters, edit the `mzmine_parameters_pos/neg.mzbatch` files in the respective pos/neg folders. After making the desired changes, remove the preprocessing output files in the previous run in pos/neg folder, and execute the run_workflow.ps1 script again.
+
+To better understand the MZMine parameters, the .mzbatch files can be opened in MZMine GUI (Project -> Batch mode -> Load). After editing and saving the parameters in MZMine GUI, export the updated parameters back to the .mzbatch files. Then, re-run the run_workflow.R script as shown above.
+
+#### Re-run downstream processing with modified parameters
+To re-run the downstream processing with modified parameters (e.g., filtering thresholds, normalization methods), edit the `config.yml` file generated in the prepare_workflow step. After making the desired changes, execute the run_workflow.ps1 script again.
+
+
+### Output
+All the output files will be saved in the specified result folder (path_result in config.yml). The main output files include:
+
+- pos/neg folders: MZMine preprocessing output files for positive and negative mode data, respectively.
+- qc_report.html: Quality control report summarizing the internal standards in all samples. Based on prerpocessed peaktable before post-processing.
+- peaktable_pos/neg.xlsx: Preprocessed peaktable, before post-processing. 
+- peaktable_istd_pos/neg.xlsx: Preprocessed peaktable including only internal standards.
+- post_processing.html: Documentation of post-processing steps applied to the data, including filtering, imputation, normalization, and merging of positive and negative mode data.
+- evaluation.html: Evaluation report summarizing the missing distribution, qc of internal standard, normalization comparison, batch evaluation and annotation summary. Based on post-processed peaktable.
+- datatable.xlsx: Final processed data table after post-processing, including merged positive and negative mode data and feature annotations and database mappings.
+
+```powershell 
+
 ## One step command
 To run the entire workflow in a single step, you can use the following command in powershell:
 ```powershell
@@ -138,6 +161,10 @@ docker run -it `
     qiangao/metpipe:0.1 `
     Rscript /wd/prepare_run_workflow.R --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF"
 ```
+
+## Notes for non-standardized workflow
+
+The 
 
 
 
