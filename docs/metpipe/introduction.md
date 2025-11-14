@@ -6,7 +6,7 @@ This section introduces the use of **metpipe** for metabolomics and lipidomics d
 
 ## System Requirements
 
-- **Docker** version 4.47.0. Do not update to higher for now.
+- **Docker** version 4.47 or higher.
 
 Currently Docker has been setup in the following workstations:  
 
