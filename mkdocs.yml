@@ -15,9 +15,9 @@ nav:
   - Home: 'index.md'
   - Workflow: 
     - workflow/introduction.md 
-    - General guidelines:
+    - Study design & data organization:
       - Randomization: workflow/randomization.md
-      - QC samples steup: workflow/qc_setup.md
+      - QC samples setup: workflow/qc_setup.md
       - Data conversion: workflow/data_conversion.md
       - LC-MS data structure: workflow/data_structure.md 
     - Untargeted data processing:

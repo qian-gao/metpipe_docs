@@ -1,34 +1,75 @@
-# LC-MS data structure
+# LC–MS data structure
 
-LC-MS data have a three-dimensional structure consisting of mass-to-charge ratio (m/z), retention time (RT), and intensity (abundance). The bascic data structure is illustrated below:
+LC–MS(/MS) raw data can be viewed as a **time-ordered series of mass spectra** acquired over a chromatographic separation. Each spectrum contains signal intensities measured across **mass-to-charge ratio (m/z)** at a specific **retention time (RT)**. Together, the raw data form a three-dimensional data space:
+
+- **m/z**
+- **RT**
+- **Intensity** (abundance)
 
 ![](image/data_structure/data_structure.png)
 
-The abundances of the ions are plotted as a total ion chromatogram (TIC). This plot displays the peak intensities of the analyte ions versus their RT. Further, each point in the chromatogram is associated with a mass spectrum. The mass spectrum depicts the ion abundances versus the measured m/z values. 
+A common visualization is the **total ion chromatogram (TIC)**, which summarizes each spectrum into a single intensity value and plots it versus RT. At any RT point in the TIC, the corresponding **mass spectrum** can be inspected to see how signal is distributed across m/z.
+
+---
 
 ## Nomenclature
+
 ![](image/data_structure/data.jpg)
 
-- **Total ion chromatogram (TIC)**: The sum of all signals across all m/z.
-- **Base peak chromatogram (BPC)**: The set containing the most intense signal for each RT across all m/z.
-- **Spectrum**: A spectrum contains all points with a single RT value. 
-- **Total ion spectrum (TIS)**: The sum of signals across all spectra. 
-- **Extracted ion chromatogram (XIC)**: A slice of data containing a contiguous m/z range extending across all RT. 
-- **Isotope trace**: The signal produced by a single ion of a single analyte (i.e., a peptide or a lipid) at a particular charge state.
-- **Isotopic envelope trace**: The group of isotopic traces produced by a single analyte at a particular charge state. 
+- **Chromatogram**: Intensity vs **RT** (constructed by summarizing or selecting m/z signals across spectra).
+- **Spectrum**: Intensity vs **m/z** for a single acquisition time point (a “scan”) at a specific RT.
 
-## MS data form
-LC-MS data can be stored in two different forms: profile and centroid. 
+- **Total ion chromatogram (TIC)**: For each RT, the **sum of intensities across all m/z** in the spectrum (optionally within an m/z range).
+- **Base peak chromatogram (BPC)**: For each RT, the **maximum intensity** observed in the spectrum (the base peak), plotted vs RT.
+
+- **Total ion spectrum (TIS)**: The **sum (or average)** of intensities across spectra over an RT range, yielding a single spectrum summarizing that region.
+- **Extracted ion chromatogram (XIC)**: Intensity vs RT for a **selected m/z window** (e.g., a narrow range around an expected m/z). XICs are used to inspect candidate compounds/features and assess peak shape and RT.
+
+- **Isotope trace**: The chromatographic trace for one isotopologue (e.g., M, M+1) of a compound/feature within a defined m/z tolerance.
+- **Isotopic envelope**: The set of isotope traces (M, M+1, M+2, …) associated with the same compound/feature (and charge state, if applicable).
+
+---
+
+## MS levels (MS1 vs MS2)
+
+Depending on the acquisition method, files may contain:
+
+- **MS1 spectra**: survey scans used for feature detection and quantification (typical for untargeted workflows).
+- **MS2 (MS/MS) spectra**: fragmentation spectra used primarily for **annotation/identification** (library matching, structural inference).
+
+---
+
+## Data representation: profile vs centroid
+
+LC–MS data are commonly stored in two forms: **profile** and **centroid**.
 
 ![](image/data_structure/centroid.png)
 
-- **Profile (a)**: the raw data detected by a mass spectrometer consists of distributed signal across m/z values at each point where an ion is detected.
-- **Centroid (b)**: the raw data has been reduced to data points that represent the local maxima in a single spectrum, a distribution of data over an m/z range for a given RT.
+- **Profile data**: the instrument-reported signal over m/z, represented as a dense series of points.  
+  - Pros: most information-rich; preserves peak shape.  
+  - Cons: larger files; heavier computation.
 
-## Ion mobility
-Ion mobility spectrometry (IMS) adds an additional dimension to the LC-MS data structure by separating ions based on their size, shape, and charge. This results in a four-dimensional data structure consisting of m/z, RT, intensity, and drift time (DT). Ion mobility derives an additional separation of ions, providing enhanced resolution and identification capabilities. The ion mobility depends on the instrument type and can be represented in different ways, such as drift time (DT), inverse reduced mobility (1/K0), or collisional cross-section (CCS). CCS is an intrinsic property of the ion, reflecting its size and shape, and is independent of the instrument used for measurement. 
+- **Centroid data**: a reduced representation where each peak is summarized by (m/z, intensity) at local maxima (centroided peaks).  
+  - Pros: smaller files; faster processing.  
+  - Cons: centroiding choices can affect low-intensity signals and peak representation.
 
+Practical implication: whether to work with profile or centroid depends on the instrument, conversion settings, and downstream software. If you centroid during conversion, document the method (e.g., vendor peak picking) and keep vendor raw files archived.
 
+---
 
+## Ion mobility (optional 4th dimension)
 
+Ion mobility spectrometry (IMS) adds an additional separation based on ion size/shape/charge, creating a four-dimensional structure:
 
+- **m/z**
+- **RT**
+- **Ion mobility** (e.g., drift time)
+- **Intensity**
+
+Ion mobility may be reported as:
+
+- **Drift time (DT)**: instrument-specific time coordinate
+- **Inverse reduced mobility (1/K0)**: mobility metric that is more comparable across settings
+- **Collision cross section (CCS)**: a physicochemical property related to ion shape/size; often used for identification support
+
+IMS can improve separation of isomers and reduce spectral complexity, but it also increases data volume and may require IMS-aware processing tools.
