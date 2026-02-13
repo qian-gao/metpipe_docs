@@ -15,7 +15,7 @@ This documentation describes recommended computational practices for metabolomic
 - **Exploratory analysis** and visualization  
 - **Export** of analysis-ready outputs for statistics and interpretation  
 
-The goal is to support **transparent, reproducible, and auditable** analyses across studies.
+The goal is to support **transparent and reproducible** analyses across studies.
 
 ---
 
