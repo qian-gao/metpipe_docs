@@ -1,6 +1,6 @@
 # Data conversion
 
-Many LC–MS instruments generate data in **vendor-specific formats** (e.g., Bruker `.d`, Thermo `.raw`). These formats are often not directly supported by open-source tools used in metabolomics/lipidomics workflows. A standard first step is therefore to convert raw files into an **open format** (most commonly **`mzML`**) while preserving the information needed for downstream feature detection and QC.
+Many LC–MS instruments generate data in **vendor-specific formats** (e.g., Bruker `.d`, Thermo `.raw`). These formats are sometimes not directly supported by open-source tools used in metabolomics/lipidomics workflows. A standard first step is therefore to convert raw files into an **open format** (most commonly **`mzML`**) while preserving the information needed for downstream feature detection and QC.
 
 ---
 

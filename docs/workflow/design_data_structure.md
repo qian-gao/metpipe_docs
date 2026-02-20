@@ -46,12 +46,12 @@ LC–MS data are commonly stored in two forms: **profile** and **centroid**.
 ![](image/data_structure/centroid.png)
 
 - **Profile data**: the instrument-reported signal over m/z, represented as a dense series of points.  
-  - Pros: most information-rich; preserves peak shape.  
-  - Cons: larger files; heavier computation.
+    - Pros: most information-rich; preserves peak shape.  
+    - Cons: larger files; heavier computation.
 
 - **Centroid data**: a reduced representation where each peak is summarized by (m/z, intensity) at local maxima (centroided peaks).  
-  - Pros: smaller files; faster processing.  
-  - Cons: centroiding choices can affect low-intensity signals and peak representation.
+    - Pros: smaller files; faster processing.  
+    - Cons: centroiding choices can affect low-intensity signals and peak representation.
 
 Practical implication: whether to work with profile or centroid depends on the instrument, conversion settings, and downstream software. If you centroid during conversion, document the method (e.g., vendor peak picking) and keep vendor raw files archived.
 
@@ -63,7 +63,7 @@ Ion mobility spectrometry (IMS) adds an additional separation based on ion size/
 
 - **m/z**
 - **RT**
-- **Ion mobility** (e.g., drift time)
+- **Ion mobility**
 - **Intensity**
 
 Ion mobility may be reported as:

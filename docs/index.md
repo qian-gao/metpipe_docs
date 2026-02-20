@@ -1,6 +1,6 @@
 # metpipe documentation
 
-metpipe provides a reproducible workflow for **metabolomics and lipidomics** data processing, from raw/feature-level data to quality control, post processing, evaluation and differential analysis.
+metpipe provides a reproducible workflow for **metabolomics and lipidomics** data processing, from raw/feature-level data to quality control (QC), post-processing, evaluation, and statistical interpretation.
 
 ---
 
@@ -8,12 +8,11 @@ metpipe provides a reproducible workflow for **metabolomics and lipidomics** dat
 
 This documentation describes recommended computational practices for metabolomics/lipidomics, including:
 
-- **Project organization** and metadata conventions  
-- **Data import** and format expectations  
+- **Study design and data organization** (randomization, QC setup, data conversion, LC-MS data structure)
+- **Preprocessing** (e.g., feature detection, filtering, missingness handling, normalization)
 - **Quality control (QC)** and diagnostic reporting  
-- **Pre-processing** (e.g., filtering, normalization, transformation)  
-- **Exploratory analysis** and visualization  
-- **Export** of analysis-ready outputs for statistics and interpretation  
+- **Post-processing** (e.g., feature cleaning, imputation, normalization)  
+- **Data evaluation** (e.g., QC metrics, batch effects, drift) 
 
 The goal is to support **transparent and reproducible** analyses across studies.
 

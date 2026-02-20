@@ -5,11 +5,12 @@ Randomization is a core element of experimental design. In LC–MS metabolomics/
 In practice, randomization is usually applied at multiple stages:
 
 - **Sample preparation order** (extraction/derivatization/dilution)
-- **Plate layout** (e.g., 96-well plates)
 - **Injection/run order** (sequence on the instrument)
 - **Batch allocation** (if samples must be measured across days, columns, instruments, or methods)
 
-![Ordered allocation](image/randomization/ordered_allocation.png){ width=400px }
+Samples should be randomized during both preparation and acquisition. When necessary, allocate to batches in a way that balances groups across batches. The goal is to ensure that technical variation is **distributed across groups** rather than systematically aligned with them. 
+
+---
 
 ## Why randomize in LC–MS?
 
@@ -21,11 +22,15 @@ Randomization aims to:
 - **Reduce bias** in estimates of group differences
 - Improve robustness of downstream steps such as **normalization** and **differential analysis**
 
+![Ordered allocation](image/randomization/ordered_allocation.png){ width=400px }
+
+---
+
 ## Types of randomization
 
 ### Complete randomization
 
-In complete randomization, every sample has the same probability of being assigned to any position (e.g., injection index 1…N).
+In **complete randomization**, every sample has the same probability of being assigned to any position (e.g., injection index 1…N).
 
 Use when:
 
@@ -47,16 +52,7 @@ Limitations:
 - the primary biological groups (e.g., case/control, dose levels), and
 - selected covariates (i.e., *strata* such as sex, site, acquisition day, plate), when applicable.
 
-You then randomize the order **within each block** (and often also randomize block order). This design distributes samples evenly across the run, reducing the risk that **run-order drift** becomes confounded with biology.
-
-Use when:
-
-- You expect **drift over time** (common in long sequences)
-- You want balance throughout the run (not only “on average”)
-
-
-
-Block randomization divides the run into **blocks** (e.g., every 10–20 injections, or per plate/row) and randomizes **within each block**. This helps ensure that each block contains a balanced mixture of groups.
+You then randomize the order **within each block** and often also randomize block order. This design distributes samples evenly across the run, reducing the risk that **run-order drift** becomes confounded with biology.
 
 Use when:
 
@@ -73,16 +69,20 @@ Typical ways to define blocks:
 
 ![Example of block randomization](image/randomization/block_rand.jpeg){ width=400px }
 
-> **Note for repeated measures / paired samples:** If multiple samples originate from the **same subject** (e.g., longitudinal time points, matched tissues, or technical replicates), keep them in the **same block** (and ideally the same analytical batch) whenever possible. This reduces within-subject differences driven by drift across distant parts of the run and preserves the interpretability of paired/within-subject comparisons.
+> **Note for repeated measures / paired samples:** 
+
+> If multiple samples originate from the **same subject** (e.g., longitudinal time points, matched tissues, or technical replicates), keep them in the **same block** (and ideally the same analytical batch) whenever possible. This reduces within-subject differences driven by drift across distant parts of the run and preserves the interpretability of paired/within-subject comparisons.
 
 ---
 
 ## Batch allocation
 
+When the sequence is too long for a single batch, or when samples arrive in multiple waves, you may need to run multiple batches. In this case, **batch design** is critical to ensure that batch effects do not become confounded with biology.
+
 A “batch” can mean different things in practice:
 
-- **Analytical batch**: same day/column/instrument/method settings
 - **Preparation batch**: same extraction day/operator/reagent lot/plate
+- **Analytical batch**: same day/column/instrument/method settings
 
 The key rule is that do not let **batch membership** become a proxy for **biological group**.
 
@@ -93,4 +93,10 @@ Recommendations:
 - If you must run a group in a separate batch (e.g., samples arrive later), document it and plan for explicit batch modeling.
 
 ![Batch allocation example](image/randomization/batch.jpeg){ width=400px }
+
+---
+
+References:
+
+1. Burger, Bram, Marc Vaudel, and Harald Barsnes. "Importance of block randomization when designing proteomics experiments." Journal of proteome research 20.1 (2020): 122-128.
 

@@ -1,24 +1,71 @@
 # Introduction
 
-This section describes recommended **computational best practices** for LC–MS-based **metabolomics and lipidomics** data processing. The focus is on producing **reproducible, well-documented, and quality-controlled** datasets suitable for downstream statistics and interpretation.
+This section describes recommended **computational best practices** for LC–MS-based **metabolomics and lipidomics** data processing and statistical analysis. It is not a software manual, but rather a set of guidelines and principles to help researchers make informed decisions at each step of the workflow.
 
-## What this section covers
+## Workflow overview
 
-### General guidelines
-- **Sample randomization** prior to data acquisition (to reduce confounding by run order)
-- **Quality control (QC) samples**: types, placement, and how to use QC results
-- **Data conversion** and file-format considerations before processing
-- **LC–MS data structure**: samples, batches, injections, and metadata needed for analysis
+- Start with **study design & data organization** to ensure your acquisition plan, QC strategy, and metadata are consistent and analysis-ready.
+- Then follow either the **untargeted** or **targeted** processing track to convert raw data into a clean, normalized data table of features/targets × samples.
+- Finally, perform **statistical analysis and interpretation** to extract biological insights.
+
+### Study design & data organization
+
+- [Introduction](design_intro.md)
+- [Randomization](design_randomization.md)
+- [Quality control setup](design_qc_setup.md)
+- [Data conversion](design_data_conversion.md)
+- [LC-MS data structure](design_data_structure.md)
 
 ### Untargeted data processing
-- **Retention time prediction/mapping** (as applicable)
-- **Internal-standard and other QC** and diagnostic checks
-- **Pre-processing** (e.g., filtering, transformation, initial normalization choices)
-- **Peak grouping** and consolidation across samples
-- **Peak cleaning** (removal of unstable/noisy features)
-- **Missing-value imputation** (when appropriate, with assumptions stated)
-- **Normalization** and batch-effect handling
-- **Merging peak lists** and generating peak tables
+
+- [Introduction](untar_intro.md)
+- [Preprocessing](untar_preprocessing.md)
+- Identification
+	- [General](untar_identification.md)
+	- [Lipid annotation](untar_identification_lip.md)
+- [Quality control](untar_qc.md)
+- Post-processing
+	- [Peak cleaning](untar_clean.md)
+	- [Missing imputation](untar_missing_imputation.md)
+	- [Normalization](untar_normalization.md)
+	- [Merge peaklist](untar_merge.md)
+
+<!-- ### Targeted data processing
+
+- [Introduction](tar_intro.md)
+- [Targets and assay design](tar_targets.md)
+- [Standards and internal standards](tar_standards.md)
+- [Calibration](calibration.md)
+- [Batch design and QC](tar_batch_qc.md)
+- [Acquisition (MRM/PRM)](tar_acquisition.md)
+- [Data processing](tar_processing.md)
+- [Acceptance criteria](tar_acceptance.md)
+- [Reporting](tar_reporting.md)
+
+### Statistical analysis and interpretation
+
+- [Introduction](stat_intro.md)
+- [Univariate analysis](univariate.md)
+- [Multivariate analysis](multivariate.md)
+- [Pathway analysis](pathway.md)
+
+### Other topics
+
+- [Retention time prediction](untar_rt_prediction.md) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
