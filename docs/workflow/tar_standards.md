@@ -1,37 +1,67 @@
+
 # Standards and Internal Standards
 
-In targeted metabolomics and lipidomics, calibration standards and internal standards are essential for accurate and reproducible quantification. Their correct use directly impacts the quality and interpretability of your data.
+Accurate quantification in targeted metabolomics and lipidomics relies on the careful use of **standards**—both calibration standards and internal standards (IS). These are essential for ensuring that your results are reliable, comparable, and scientifically meaningful.
+
+---
+
+## General Use and Rationale
+
+Standards are used throughout the analytical workflow to:
+
+- Enable **absolute quantification** of analytes (calibration standards)
+- Correct for technical variability and improve **precision** (internal standards)
+- Monitor instrument performance and data quality
+- Support troubleshooting and reproducibility
+
+In most workflows, standards are included in every batch and are processed alongside study samples and QCs. Their correct use is a hallmark of robust experimental design.
+
+---
 
 ## Calibration Standards
 
-Calibration standards are used to generate calibration curves, which are fundamental for converting instrument response (peak area or height) into absolute concentrations. In data processing, calibration standards are used as follows:
+Calibration standards are samples with known concentrations of target analytes. They are used to generate a calibration curve, which converts instrument response (e.g., peak area) into absolute concentration.
+
+**Key steps:**
 
 - **Preparation:**
-  - Prepare a series of calibration samples with known analyte concentrations, ideally spanning the expected range in study samples.
-  - Record the exact concentrations and sample IDs for each calibrator.
+   - Prepare a series of calibration samples covering the expected concentration range.
+   - Record concentrations and sample IDs for each calibrator.
+   - Tip: Use serial dilutions for accuracy and reproducibility.
 - **Data acquisition:**
-  - Acquire calibration standards in each batch alongside study samples and QCs.
+   - Run calibration standards in each batch, alongside study samples and QCs.
+   - Randomize order to minimize batch effects.
 - **Data processing:**
-  - Extract peak areas/heights for each analyte in each calibration sample.
-  - Plot instrument response versus known concentration to construct the calibration curve.
-  - Fit an appropriate model (e.g., linear, quadratic, weighted) and assess curve quality (R², residuals, back-calculated accuracy).
-  - Use the calibration curve to calculate concentrations in unknown samples by interpolation.
+   - Extract peak areas for each analyte in each calibration sample.
+   - Plot instrument response versus known concentration to build the calibration curve.
+   - Fit an appropriate model (e.g., linear, quadratic, weighted regression). Assess curve quality (R², residuals, back-calculated accuracy).
+   - Use the calibration curve to interpolate concentrations in unknown samples.
 - **Documentation:**
-  - Store calibration curve parameters and sample metadata for traceability and reproducibility.
+   - Save calibration curve parameters and sample metadata for traceability and reproducibility.
+
+**Practical tip:** Always check the linearity and accuracy of your calibration curve before quantifying study samples. Poor calibration undermines all downstream results.
+
+---
 
 ## Internal Standards (IS)
 
-Internal standards are used to correct for technical variability and improve quantification accuracy. Their use in data processing includes:
+Internal standards are compounds added at a constant amount to all samples, calibrators, and QCs. They are chemically similar to the analytes of interest but distinguishable by the instrument (e.g., isotopically labeled analogs).
+
+**Key steps:**
 
 - **Addition:**
-  - Add IS to all samples, calibrators, and QCs at a constant concentration before extraction.
-  - Record IS identity, concentration, and addition protocol.
+   - Add IS to all samples, calibrators, and QCs before extraction.
+   - Record IS identity, concentration, and addition protocol.
+   - Choose IS that closely match the chemical properties of your analytes.
 - **Data acquisition:**
-  - Acquire IS signals in each run, ensuring they are well-resolved and free from interference.
+   - Ensure IS signals are acquired in every run, are well-resolved, and free from interference.
 - **Data processing:**
-  - Normalize analyte peak areas/heights to the corresponding IS (e.g., analyte/IS ratio).
-  - Use normalized values for calibration curve construction and quantification.
-  - Monitor IS response across all samples to detect technical issues (e.g., extraction losses, instrument drift).
+   - Normalize analyte peak areas or heights to the corresponding IS (e.g., analyte/IS ratio).
+   - Use normalized values for calibration curve construction and quantification.
+   - Monitor IS response across all samples to detect technical issues.
 - **Quality control:**
-  - Flag samples with abnormal IS response for review or exclusion.
+   - Flag samples with abnormal IS response for review or exclusion.
+   - Plot IS response across the batch to visualize trends or outliers.
+
+**Practical tip:** Consistent IS response across samples is a strong indicator of technical stability. Sudden changes may signal problems that require investigation.
 

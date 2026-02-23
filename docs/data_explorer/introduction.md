@@ -2,7 +2,7 @@
 
 # Introduction
 
-Data explorer is a shiny web application based on metpipe package. It provides a series tools facilitating metabolomics data processing, exploration and visualization. Visit [Data Explorer](https://qiangao.shinyapps.io/metpipe_app/) for more information.
+Data explorer is a shiny web application based on metpipe package. It provides a series tools facilitating metabolomics data processing, exploration and visualization. Visit https://qiangao.shinyapps.io/metpipe_app/ for more information.
 
 
 
