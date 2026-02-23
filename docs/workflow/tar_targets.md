@@ -5,8 +5,8 @@ Careful selection and documentation of target analytes is the foundation of a ro
 ## Defining the target list
 
 - **Selection criteria:**
-   - Choose analytes based on biological relevance, study goals, and analytical feasibility.
-   - Consider pathway coverage, disease association, or hypothesis-driven targets.
+	- Choose analytes based on biological relevance, study goals, and analytical feasibility.
+	- Consider pathway coverage, disease association, or hypothesis-driven targets.
 
 - **Documentation:**
 	- For each analyte, record:
