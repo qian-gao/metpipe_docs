@@ -25,26 +25,25 @@ Calibration standards are samples with known concentrations of target analytes. 
 **Key steps:**
 
 - **Preparation:**
-
-   - Prepare a series of calibration samples covering the expected concentration range.
-   - Record concentrations and sample IDs for each calibrator.
-   - Tip: Use serial dilutions for accuracy and reproducibility.
+	- Prepare a series of calibration samples covering the expected concentration range.
+	- Record concentrations and sample IDs for each calibrator.
+	- Tip: Use serial dilutions for accuracy and reproducibility.
 
 - **Data acquisition:**
 
-   - Run calibration standards in each batch, alongside study samples and QCs.
-   - Randomize order to minimize batch effects.
+	- Run calibration standards in each batch, alongside study samples and QCs.
+	- Randomize order to minimize batch effects.
 
 - **Data processing:**
 
-   - Extract peak areas for each analyte in each calibration sample.
-   - Plot instrument response versus known concentration to build the calibration curve.
-   - Fit an appropriate model (e.g., linear, quadratic, weighted regression). Assess curve quality (R², residuals, back-calculated accuracy).
-   - Use the calibration curve to interpolate concentrations in unknown samples.
+	- Extract peak areas for each analyte in each calibration sample.
+	- Plot instrument response versus known concentration to build the calibration curve.
+	- Fit an appropriate model (e.g., linear, quadratic, weighted regression). Assess curve quality (R², residuals, back-calculated accuracy).
+	- Use the calibration curve to interpolate concentrations in unknown samples.
 
 - **Documentation:**
 
-   - Save calibration curve parameters and sample metadata for traceability and reproducibility.
+	- Save calibration curve parameters and sample metadata for traceability and reproducibility.
 
 **Practical tip:** Always check the linearity and accuracy of your calibration curve before quantifying study samples. Poor calibration undermines all downstream results.
 
@@ -57,18 +56,18 @@ Internal standards are compounds added at a constant amount to all samples, cali
 **Key steps:**
 
 - **Addition:**
-   - Add IS to all samples, calibrators, and QCs before extraction.
-   - Record IS identity, concentration, and addition protocol.
-   - Choose IS that closely match the chemical properties of your analytes.
+	- Add IS to all samples, calibrators, and QCs before extraction.
+	- Record IS identity, concentration, and addition protocol.
+	- Choose IS that closely match the chemical properties of your analytes.
 - **Data acquisition:**
-   - Ensure IS signals are acquired in every run, are well-resolved, and free from interference.
+	- Ensure IS signals are acquired in every run, are well-resolved, and free from interference.
 - **Data processing:**
-   - Normalize analyte peak areas or heights to the corresponding IS (e.g., analyte/IS ratio).
-   - Use normalized values for calibration curve construction and quantification.
-   - Monitor IS response across all samples to detect technical issues.
+	- Normalize analyte peak areas or heights to the corresponding IS (e.g., analyte/IS ratio).
+	- Use normalized values for calibration curve construction and quantification.
+	- Monitor IS response across all samples to detect technical issues.
 - **Quality control:**
-   - Flag samples with abnormal IS response for review or exclusion.
-   - Plot IS response across the batch to visualize trends or outliers.
+	- Flag samples with abnormal IS response for review or exclusion.
+	- Plot IS response across the batch to visualize trends or outliers.
 
 **Practical tip:** Consistent IS response across samples is a strong indicator of technical stability. Sudden changes may signal problems that require investigation.
 

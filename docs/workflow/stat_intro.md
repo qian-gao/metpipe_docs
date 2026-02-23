@@ -17,13 +17,13 @@ Before performing statistical analysis, it is essential to check and prepare the
 Outliers can significantly affect statistical results. Identify and handle outliers using a combination of visualization and statistical/multivariate diagnostics.
 
 - Visual inspection
-   - IQR method: values outside 1.5×IQR from Q1/Q3 are considered outliers.
+	- IQR method: values outside 1.5×IQR from Q1/Q3 are considered outliers.
    considered outliers.
 - Multivariate methods
-   - PCA: samples far from the main cluster in score plots may be outliers.
-   - Mahalanobis distance: samples with large distance from the center may be flagged.
-   - Hotelling’s T-squared: samples exceeding a threshold may be flagged.
-   - Q residuals: samples with high Q residuals in PCA may indicate outliers.
+	- PCA: samples far from the main cluster in score plots may be outliers.
+	- Mahalanobis distance: samples with large distance from the center may be flagged.
+	- Hotelling’s T-squared: samples exceeding a threshold may be flagged.
+	- Q residuals: samples with high Q residuals in PCA may indicate outliers.
 
 A Hotelling’s T-squared vs Q residuals plot (e.g., using PC1–PC3) can help identify outliers in multivariate space.
 
@@ -34,7 +34,7 @@ Transformation is typically applied **after normalization/batch correction and b
 Common transformations:
 
 - **Log transform** (often `log2` or `log10`): widely used because intensities are frequently right-skewed and effects are often multiplicative.
-   - Practical note: handle zeros/small values using an offset, e.g. `log(x + ε)`, or use `log1p(x)` where appropriate. Report the chosen approach.
+	- Practical note: handle zeros/small values using an offset, e.g. `log(x + ε)`, or use `log1p(x)` where appropriate. Report the chosen approach.
 - **Square-root transform**: milder than log; useful when log is too aggressive.
 - **Box–Cox** (positive data) or **Yeo–Johnson** (allows zeros/negatives): data-driven families that can stabilize variance.
 

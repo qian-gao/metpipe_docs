@@ -74,29 +74,29 @@ Lipid-focused pathway/context tools vary by database coverage. Common choices in
 
 ## Recommended workflow (practical and defensible)
 1. **Decide what you want to claim**
-   - Hypothesis generation and biological context (typical)
-   - Narrow pathway support for a specific mechanism (requires stronger evidence)
+	- Hypothesis generation and biological context (typical)
+	- Narrow pathway support for a specific mechanism (requires stronger evidence)
 
 2. **Define inputs and identification confidence**
-   - Prefer **identified metabolites** and record confidence levels.
-   - If using **putative annotations/features**, state this clearly and keep pathway claims exploratory.
+	- Prefer **identified metabolites** and record confidence levels.
+	- If using **putative annotations/features**, state this clearly and keep pathway claims exploratory.
 
 3. **Make mapping rules explicit**
-   - Report which identifiers you use (HMDB/KEGG/ChEBI/InChIKey).
-   - Define how you handle ambiguous matches (keep all candidates vs select one; how ties are resolved).
+	- Report which identifiers you use (HMDB/KEGG/ChEBI/InChIKey).
+	- Define how you handle ambiguous matches (keep all candidates vs select one; how ties are resolved).
 
 4. **Pick an analysis method aligned with the input**
-   - **ORA/MSEA on a significant list**: simple, but sensitive to thresholds and overlap.
-   - **Rank-based approaches**: less dependent on arbitrary cutoffs.
-   - **Topology/network-aware scoring**: can improve prioritization but does not eliminate overlap/ambiguity.
+	- **ORA/MSEA on a significant list**: simple, but sensitive to thresholds and overlap.
+	- **Rank-based approaches**: less dependent on arbitrary cutoffs.
+	- **Topology/network-aware scoring**: can improve prioritization but does not eliminate overlap/ambiguity.
 
 5. **Use an assay-appropriate universe/background**
-   - Avoid “all metabolites in the database”.
-   - Use metabolites measurable/detectable in your assay (or the QC-passing set).
+	- Avoid “all metabolites in the database”.
+	- Use metabolites measurable/detectable in your assay (or the QC-passing set).
 
 6. **Summarize results as themes and show the drivers**
-   - Group redundant pathways into **themes**.
-   - For each theme/pathway, list the contributing metabolites/features, their direction of change, and confidence.
+	- Group redundant pathways into **themes**.
+	- For each theme/pathway, list the contributing metabolites/features, their direction of change, and confidence.
 
 
 **Reference:** *Metabolites are not genes — avoiding the misuse of pathway analysis in metabolomics* (2025).
