@@ -1,6 +1,6 @@
 # Pathway analysis
 
-This section follows the central message of **“Metabolites are not genes — avoiding the misuse of pathway analysis in metabolomics” (2025)**: pathway analysis in metabolomics/lipidomics requires extra care because metabolite coverage, mapping, and pathway overlap behave very differently than gene-centric data. Pathway results should usually be interpreted as **pathway-consistent signals** (context), not as definitive proof that a specific pathway is “activated”.
+Pathway analysis in metabolomics/lipidomics requires extra care because metabolite coverage, mapping, and pathway overlap behave very differently than gene-centric data. Pathway results should usually be interpreted as **pathway-consistent signals** (context), not as definitive proof that a specific pathway is “activated”.
 
 ## Why pathway analysis is different for metabolites (vs genes)
 
@@ -98,18 +98,6 @@ Lipid-focused pathway/context tools vary by database coverage. Common choices in
    - Group redundant pathways into **themes**.
    - For each theme/pathway, list the contributing metabolites/features, their direction of change, and confidence.
 
-### Interpretation guidelines (wording to avoid over-claiming)
-- Prefer: **“The data show a pathway-consistent pattern involving …”**
-- Avoid: **“Pathway X is activated/inhibited”** unless you have strong mechanistic evidence, good pathway coverage, and an analysis design that supports directionality.
-- Treat pathway output as **contextualization**, not validation.
-
-## Minimum reporting checklist
-- Database(s) used (KEGG/Reactome/MetaCyc/etc.) + version/date.
-- ID mapping rules (including ambiguous matches) and confidence levels of inputs.
-- Background set definition.
-- Method (ORA / rank-based / topology / feature-inference) + parameters.
-- Multiple testing correction approach.
-- For each reported pathway: list of contributing metabolites/features + effect directions.
 
 **Reference:** *Metabolites are not genes — avoiding the misuse of pathway analysis in metabolomics* (2025).
 

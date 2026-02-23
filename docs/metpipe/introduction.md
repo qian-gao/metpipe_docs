@@ -15,7 +15,7 @@ Currently Docker has been setup in the following workstations:
 - Simba
 - Boots
 
-Current version: 0.5
+Current version: 0.8
 
 ## Special notes for usage in KU workstations
 

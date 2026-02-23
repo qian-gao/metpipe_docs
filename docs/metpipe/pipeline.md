@@ -1,11 +1,11 @@
-## Overall procedures
+# Overall procedures
 
-### Standardized workflow
-#### Input
+## Standardized workflow
+### Input
 
 The only input needed is the subfolder name where the raw/mzML data is stored (e.g. PL_LIPS_PASEF). The subfolder naming should follow the standard naming convention as shown in the figure below (i.e. Matrix_Assay_method). The data file naming should follow the standard naming convention (i.e. Project ID_Assay Method Polarity_Date_Run Seq_Sample Name_Extraction Replicate_Technical Replicate, e.g. MP000_LIPSPASEFp_09092025_004_BL_1_1).
 
-#### Processing
+### Processing
 
 The workflow is executed in two sequential steps:
 
@@ -15,8 +15,12 @@ The workflow is executed in two sequential steps:
 - **Run workflow**  
   This step reads the config.yml produced by prepare_workflow and executes the preprocessing and downstream processing (e.g., peak detection, alignment, and annotation) according to those parameters. Processing logs and result files are written to the project output directory.
 
-### Non-standardized workflow
+---
+
+## Non-standardized workflow
 For non-standardized workflows, the core processing steps are the same as for the standardized workflow. prepare_workflow still generates a default config.yml, but users may edit its parameters to accommodate non-standard inputs (for example, to point to an alternative library, change preprocessing or filtering thresholds, or modify assay-specific settings).
+
+---
 
 ## Guidance for standardized workflow
 
@@ -151,6 +155,7 @@ All the output files will be saved in the specified result folder (path_result i
 - `evaluation.html`: Evaluation report summarizing the missing distribution, qc of internal standard, normalization comparison, batch evaluation and annotation summary. Based on post-processed peaktable.
 - `datatable.xlsx`: Final processed data table after post-processing, including merged positive and negative mode data and feature annotations and database mappings.
 
+---
 
 ## One step command
 To run the entire workflow in a single step, you can use the following command in powershell:
@@ -160,6 +165,8 @@ docker run -it `
     qiangao/metpipe:0.5 `
     Rscript /wd/prepare_run_workflow.R --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF"
 ```
+
+---
 
 ## Guidance for non-standardized workflow
 If your data contains more qc types than the standardized ones (e.g. BL, PO, NIST, CP), you could prepare non-standardized workflow by running the following command in powershell: 

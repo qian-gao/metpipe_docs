@@ -33,21 +33,20 @@ nav:
         - Missing imputation: workflow/untar_missing_imputation.md
         - Normalization: workflow/untar_normalization.md
         - Merge peaklist: workflow/untar_merge.md
-    # - Targeted data processing:
-    #   - Introduction: workflow/tar_intro.md
-    #   - Targets and assay design: workflow/tar_targets.md
-    #   - Standards and internal standards: workflow/tar_standards.md
-    #   - Calibration: workflow/calibration.md
-    #   - Batch design and QC: workflow/tar_batch_qc.md
-    #   - Acquisition (MRM/PRM): workflow/tar_acquisition.md
-    #   - Data processing: workflow/tar_processing.md
-    #   - Acceptance criteria: workflow/tar_acceptance.md
-    #   - Reporting: workflow/tar_reporting.md
-    # - Statistical analysis and interpretation:
-    #   - Introduction: workflow/stat_intro.md
-    #   - Univariate analysis: workflow/univariate.md
-    #   - Multivariate analysis: workflow/multivariate.md
-    #   - Pathway analysis: workflow/pathway.md
+    - Targeted data processing:
+      - Introduction: workflow/tar_intro.md
+      - Targets and assay design: workflow/tar_targets.md
+      - Standards and internal standards: workflow/tar_standards.md
+      - Calibration: workflow/tar_calibration.md
+      - Batch design and QC: workflow/tar_batch_qc.md
+      - Acquisition methods: workflow/tar_acquisition.md
+      - Data processing: workflow/tar_processing.md
+      - Acceptance criteria: workflow/tar_acceptance.md
+    - Statistical analysis and interpretation:
+      - Introduction: workflow/stat_intro.md
+      - Univariate analysis: workflow/univariate.md
+      - Multivariate analysis: workflow/multivariate.md
+      - Pathway analysis: workflow/pathway.md
     # - Other topics:
     #   - Retention time prediction: workflow/untar_rt_prediction.md
 
@@ -70,13 +69,13 @@ nav:
 
   - Data explorer:
     - Introduction: data_explorer/introduction.md
-    - Randomization: data_explorer/randomization.md 
-    - Generate sample list: data_explorer/generate_sample_list.md 
-    - Match library: data_explorer/match_library.md
-    - Retention time mapping: data_explorer/rt_mapping.md
-    - Calibration: data_explorer/calibration.md
-    - Upload peaklist: data_explorer/upload.md
-    - Preprocessing: data_explorer/preprocessing.md
+    # - Randomization: data_explorer/randomization.md 
+    # - Generate sample list: data_explorer/generate_sample_list.md 
+    # - Match library: data_explorer/match_library.md
+    # - Retention time mapping: data_explorer/rt_mapping.md
+    # - Calibration: data_explorer/calibration.md
+    # - Upload peaklist: data_explorer/upload.md
+    # - Preprocessing: data_explorer/preprocessing.md
 
 
 extra_css:

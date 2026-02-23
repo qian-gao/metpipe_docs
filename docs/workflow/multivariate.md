@@ -1,35 +1,76 @@
-# Multivariate analysis
+# Multivariate Analysis
 
-Multivariate methods analyze multiple features simultaneously to identify patterns, clusters, or predictive models.
+Multivariate analysis examines multiple variables (features) simultaneously to uncover patterns, groupings, or predictive relationships in complex datasets. In metabolomics and lipidomics, these methods are essential for data exploration, classification, and biomarker discovery.
 
-## Unsupervised dimensionality reduction
+## Why Use Multivariate Analysis?
 
-- **Principal Component Analysis (PCA)**
-  - Unsupervised method that reduces dimensionality while preserving variance; supports visualization of clustering and identification of outliers.
-- **t-SNE**
-  - Non-linear method effective for visualization and local clusters; can be slow on large datasets.
-- **UMAP**
-  - Non-linear method that is often faster and more scalable than t-SNE and can preserve more global structure.
+- Biological systems are complex, with many correlated variables.
+- Multivariate methods can:
+  - Reveal hidden structure (e.g., clusters, trends)
+  - Reduce dimensionality for visualization
+  - Build predictive models for classification or regression
+  - Identify combinations of features that best explain group differences
 
-## Supervised methods
+## Unsupervised Dimensionality Reduction
 
-- **Partial Least Squares Discriminant Analysis (PLS-DA)**
-  - Supervised method that identifies features that discriminate between predefined groups.
-- **Orthogonal PLS-DA (OPLS-DA)**
-  - Separates predictive variation from orthogonal variation; can improve interpretability for classification.
-- **ASCA (ANOVA–Simultaneous Component Analysis)**
-  - Combines ANOVA and PCA to analyze effects of experimental factors and interactions.
-- **MEBA (Multivariate Empirical Bayes Analysis of Variance)** for time series
-  - Compares temporal profiles across conditions to identify dynamic differences.
+Unsupervised methods do not use group labels and are used for data exploration and visualization.
 
-## Clustering methods
+- **Principal Component Analysis (PCA):**
+  - Reduces data to a few principal components that capture the most variance.
+  - Useful for visualizing sample clustering, detecting outliers, and assessing batch effects.
+  - Assumes linear relationships among variables.
+- **t-SNE (t-distributed Stochastic Neighbor Embedding):**
+  - Non-linear method for visualizing high-dimensional data in 2D or 3D.
+  - Preserves local structure (similarity of neighbors) but not global distances.
+  - Sensitive to parameter choices (perplexity, learning rate).
+- **UMAP (Uniform Manifold Approximation and Projection):**
+  - Non-linear, scalable method for dimensionality reduction.
+  - Preserves both local and some global structure; often faster than t-SNE.
+  - Useful for large datasets and complex clustering patterns.
 
-- **Hierarchical clustering**: groups samples or features based on similarity; often visualized with heatmaps and dendrograms.
-- **K-means clustering**: partitions samples into a predefined number of clusters.
-- **Density-based clustering (e.g., DBSCAN)**: identifies clusters based on point density and can detect clusters of arbitrary shape.
+## Supervised Methods
 
-## Machine learning methods
+Supervised methods use known group labels (e.g., case/control) to build models that discriminate between groups or predict outcomes.
 
-- **Random Forests**: classification/regression with feature importance scores.
-- **Support Vector Machines (SVM)**: classification/regression using a separating hyperplane in feature space.
-- **Elastic Net regression**: regularized regression combining L1 and L2 penalties; useful for feature selection in high-dimensional settings.
+- **Partial Least Squares Discriminant Analysis (PLS-DA):**
+  - Projects data into a new space that maximizes separation between groups.
+  - Useful for identifying features that contribute most to group differences.
+  - Risk of overfitting; always validate with cross-validation or permutation tests.
+- **Orthogonal PLS-DA (OPLS-DA):**
+  - Separates predictive variation (related to group separation) from orthogonal (unrelated) variation.
+  - Can improve interpretability of PLS-DA models.
+- **ASCA (ANOVA–Simultaneous Component Analysis):**
+  - Combines ANOVA and PCA to analyze effects of experimental factors and their interactions.
+  - Useful for complex experimental designs (e.g., time series, factorial designs).
+- **MEBA (Multivariate Empirical Bayes Analysis):**
+  - Designed for time series data; identifies features with significant temporal changes across conditions.
+
+## Clustering Methods
+
+Clustering groups samples or features based on similarity, revealing natural groupings in the data.
+
+- **Hierarchical clustering:**
+  - Builds a tree (dendrogram) of sample or feature relationships.
+  - Often visualized with heatmaps; useful for exploring patterns and subgroups.
+- **K-means clustering:**
+  - Partitions samples into a predefined number of clusters based on similarity.
+  - Sensitive to initial cluster centers and number of clusters chosen.
+- **Density-based clustering (e.g., DBSCAN):**
+  - Identifies clusters of arbitrary shape based on point density.
+  - Can detect noise and outliers as unclustered points.
+
+## Machine Learning Methods
+
+Machine learning approaches can be used for classification, regression, and feature selection in high-dimensional omics data.
+
+- **Random Forests:**
+  - Ensemble method for classification or regression.
+  - Provides feature importance scores; robust to overfitting.
+- **Support Vector Machines (SVM):**
+  - Finds the optimal separating hyperplane for classification or regression.
+  - Effective in high-dimensional spaces; kernel trick allows for non-linear boundaries.
+- **Elastic Net regression:**
+  - Regularized regression combining L1 (lasso) and L2 (ridge) penalties.
+  - Useful for feature selection and handling correlated predictors.
+
+

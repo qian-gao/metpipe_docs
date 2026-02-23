@@ -1,4 +1,0 @@
-# QC report
-
-
-
