@@ -25,7 +25,7 @@ Centroiding can be helpful for large studies, but it can also affect:
 These settings are typical for high-resolution MS1 (and MS/MS when present). Exact choices can be instrument- and workflow-dependent.
 
 - **m/z precision**: use **64-bit** m/z to retain mass accuracy.
-- **Compression**: optional, but usually recommended to reduce storage. If available, prefer **zlib** compression (widely supported).
+- **Compression**: optional, but usually recommended to reduce storage. If available, prefer **zlib** compression (widely supported). **Numpress** compression can yield smaller files but may not be supported by all tools. If you require no precision loss and maximum compatibility, use **zlib** or no compression.
 - **Vendor peak picking (centroiding)**:
   - If centroiding during conversion, use the **vendor peak picking** option.
   - Make sure **Peak Picking** is the **first** filter in the filter list (ProteoWizard applies filters in order; placing it later can yield unexpected results).
