@@ -18,36 +18,36 @@ This has been covered in the [QC samples setup](design_qc_setup.md) section.
 Use procedural blanks to identify molecular features driven by **background contamination** and **carryover**, rather than the biological matrix.
 
 - **Common sources of blank signal:**
-  - Solvent/reagent impurities
-  - Sample-prep artifacts (e.g., derivatization “ghost peaks”)
-  - Labware and LC–MS system contamination (e.g., plasticizers, column bleed)
-  - Carryover due to insufficient washing (features appearing in blanks after high-abundance injections)
+	- Solvent/reagent impurities
+	- Sample-prep artifacts (e.g., derivatization “ghost peaks”)
+	- Labware and LC–MS system contamination (e.g., plasticizers, column bleed)
+	- Carryover due to insufficient washing (features appearing in blanks after high-abundance injections)
 
 - **Flag potential contaminants (screening rule):**
-  - Flag features as “potential contaminants” when their mean intensity in real samples does not exceed **2–3×** the mean intensity in blanks (i.e., low sample/blank ratio).
-  - If filtering is needed, consider discarding only flagged features with **high variability in blanks** (e.g., **blank RSD > 15%**). Stable blank signals are less likely to differentially bias group comparisons, but should still be interpreted with caution for features of interest.
+	- Flag features as “potential contaminants” when their mean intensity in real samples does not exceed **2–3×** the mean intensity in blanks (i.e., low sample/blank ratio).
+	- If filtering is needed, consider discarding only flagged features with **high variability in blanks** (e.g., **blank RSD > 15%**). Stable blank signals are less likely to differentially bias group comparisons, but should still be interpreted with caution for features of interest.
 
 ### Inspection of internal standards
 Use internal standards to detect **run-order drift** and **out-of-control events** that indicate unstable instrument performance (e.g., sensitivity loss, chromatographic deterioration, sudden failures such as clogs).
 
 - **Run-order drift (gradual changes):**
-  - Plot IS **intensity**, **RT**, and **m/z** vs **injection order** to identify time-related trends.
+	- Plot IS **intensity**, **RT**, and **m/z** vs **injection order** to identify time-related trends.
 
 - **Out-of-control measurements (sudden changes):**
-  - Create **Shewhart control charts** for key IS metrics with warning/action limits (±1 SD, ±2 SD, ±3 SD).
-  - Flag problematic segments, for example:
-    - **1** QC/IS point outside **±3 SD**
-    - **2** consecutive points outside **±2 SD** on the same side of the mean
-    - **4** consecutive points outside **±1 SD** on the same side of the mean
-    - **10** consecutive points on the same side of the mean
-  - If QC/IS metrics fail these rules, **scrutinize neighboring study injections** and decide whether they should be **excluded and reanalyzed**, since abrupt failures are often not fully correctable by normalization.
+	- Create **Shewhart control charts** for key IS metrics with warning/action limits (±1 SD, ±2 SD, ±3 SD).
+	- Flag problematic segments, for example:
+		- **1** QC/IS point outside **±3 SD**
+		- **2** consecutive points outside **±2 SD** on the same side of the mean
+		- **4** consecutive points outside **±1 SD** on the same side of the mean
+		- **10** consecutive points on the same side of the mean
+	- If QC/IS metrics fail these rules, **scrutinize neighboring study injections** and decide whether they should be **excluded and reanalyzed**, since abrupt failures are often not fully correctable by normalization.
 
 ![](image/qc/run_order_sd.png)
 
 ### Inspection of pooled QCs
 - Plot signal intensities with respect to the run order to check for time-related drifts.
 - Examine PCA scores plot to check the distribution of samples.
-  - Use **PCA scores** (colored by run order and sample type) to assess whether samples show a continuous drift across the run. Pooled QCs should ideally cluster tightly (often near the center), indicating stable performance.
+	- Use **PCA scores** (colored by run order and sample type) to assess whether samples show a continuous drift across the run. Pooled QCs should ideally cluster tightly (often near the center), indicating stable performance.
 
 ![](image/qc/drift_in_pca.png)
 
@@ -77,10 +77,10 @@ To monitor sample integrity, track a panel of pre-analytical marker metabolites 
 ### Overall data quality assessment
 - Verify the clustering of QCs in PCA scores plots.
 - Check method precision and accuracy:
-  - RSD < 30% for peak intensity
-  - RSD < 2% for retention time
-  - RSD < 15% for peak width
-  - m/z error < 10 ppm
+	- RSD < 30% for peak intensity
+	- RSD < 2% for retention time
+	- RSD < 15% for peak width
+	- m/z error < 10 ppm
 - Create time series plots with predefined tolerance windows to visualize reproducibility and stability across the experiment for every quality metric.
 - Flag features with technical variation exceeding the biological inter-individual variability.
 
