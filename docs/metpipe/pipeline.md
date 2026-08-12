@@ -10,10 +10,24 @@ The only input needed is the subfolder name where the raw/mzML data is stored (e
 The workflow is executed in two sequential steps:
 
 - **Prepare workflow**  
-  This step parses the input (the project subfolder containing raw/mzML files), inspects the files to infer assay- and file-specific settings, and generates all required parameters (for example: preprocessing options, library paths, and other assay-specific settings). All parameters are written to config.yml for use by the next step.
+  This step parses the input (the project subfolder containing raw/mzML files), inspects the files to infer assay- and file-specific settings, and generates all required parameters (for example: preprocessing options, library paths, and other assay-specific settings). All parameters are written to config.yml for use by the next step. Related modules:
+  - `prep_yaml`: generates config.yml for standardized workflow
+  - `prep_meta`: generates metadata template for non-standardized workflow
+  - `qc`: qc types included in the data, e.g. BL, PO, NIST, CP, ABC, DEF
 
 - **Run workflow**  
-  This step reads the config.yml produced by prepare_workflow and executes the preprocessing and downstream processing (e.g., peak detection, alignment, and annotation) according to those parameters. Processing logs and result files are written to the project output directory.
+  This step reads the config.yml produced by prepare_workflow and executes the preprocessing and downstream processing (e.g., peak detection, alignment, and annotation) according to those parameters. Processing logs and result files are written to the project output directory. Related modules:
+  - `preprocessing`: executes preprocessing steps (e.g., peak detection, alignment, and annotation) using MZMine
+  - `convert_output`: converts MZMine output to a standardized format for downstream processing
+  - `qc_istd`: generates QC report for internal standards in all samples based on preprocessed peaktable before post-processing
+  - `post_processing`: performs post-processing steps on the preprocessed data
+  - `evaluation`: evaluates the processed data for missing distribution, QC of internal standards, normalization comparison, batch evaluation, and annotation summary
+  - `extra_processing_lip`: performs additional processing steps specific to lipidomics
+  - `split_batches`: splits the dataset into smaller batches for parallel preprocessing
+  - `merge_batches`: merges the peaktables of the preprocessed batches back together
+  - `evaluate_merge`: evaluates the quality of the merged peaktable
+  - `merge_batches_datatable`: merges the datatables of the preprocessed batches back together
+  - `evaluate_merge_datatable`: evaluates the quality of the merged datatable
 
 ---
 
@@ -34,10 +48,11 @@ To prepare the workflow, run the following command in powershell:
 ```powershell
 docker run -it `
     -v E:/:/mnt/e `
-    qiangao/metpipe:0.5 `
-    Rscript /wd/prepare_standard_workflow.R --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF"
+    qiangao/metpipe:1.0 `
+    Rscript /wd/prepare_run_workflow.R --run-module prep_yaml `
+    --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF"
 ```
-This command mounts the E: drive to the Docker container and runs the `prepare_standard_workflow.R` script, specifying the raw data location. Adjust the raw folder paths and the dirve where the raw data is stored as necessary for your system. Note that the raw folder path inside the Docker container should start with `/mnt/` and use forward slashes.
+This command mounts the E: drive to the Docker container and runs the prep module in the `prepare_run_workflow.R` script ,  specifying the raw data location. Adjust the raw folder paths and the dirve where the raw data is stored as necessary for your system. Note that the raw folder path inside the Docker container should start with `/mnt/` and use forward slashes.
 
 ### Check generated config.yml
 After running the prepare_workflow step, a `config.yml` file will be generated in the output directory. Review this file to ensure that all parameters are correctly set for your dataset. If you are using a non-standardized workflow, you may need to edit this file to adjust settings such as library paths or preprocessing options.
@@ -67,13 +82,32 @@ The `config.yml` file contains all the necessary parameters for the subsequent p
 - PO  
 ```
 
-- **rsd.filter**: RSD filter threshold, e.g. 30 (meaning features with RSD less than 30% in PO samples will be kept).  
+- **rsd.filter**: RSD filter threshold, e.g. 0.3 (meaning features with RSD less than 30% in PO samples will be kept).  
 ```yaml
 - - '1'
 - PO
 - <
 - '0.3'
 ```  
+
+- **dilution.filter**: dilution filter parameters, including sample types in dilution series, concentration levels, minimum correlation, and correlation method, e.g. the parameters shown below (meaning features with correlation greater than 0.7 in the dilution series of dilution.types will be kept).
+```yaml
+dilution.filter:
+  dilution.types:
+  - PO1205
+  - PO25
+  - PO50
+  - PO100
+  - PO200
+  levels:
+  - 12.5
+  - 25.0
+  - 50.0
+  - 100.0
+  - 200.0
+  min.cor: 0.7
+  method: spearman
+```
 
 - **rt.range**: retention time range to keep, e.g. (0, 30) (meaning features with retention time between 0 and 30 minutes will be kept).  
 ```yaml
@@ -129,10 +163,11 @@ To execute the full processing workflow, run the following command in powershell
 ```powershell
 docker run -it `
     -v E:/:/mnt/e `
-    qiangao/metpipe:0.5 `
-    Rscript /wd/run_workflow.R --raw "/mnt/e/Projects/MP_workshop/peaktable/PL_LIPS_PASEF/config.yml"
+    qiangao/metpipe:1.0 `
+    Rscript /wd/prepare_run_workflow.R --start-from preprocessing `
+    --config "/mnt/e/Projects/MP_workshop/peaktable/PL_LIPS_PASEF/config.yml"
 ```
-In this step, the `run_workflow.R` script is executed, using the `config.yml` file generated in the previous step. Adjust the paths as necessary for your system. The processing logs and result files will be written to the output directory specified in config.yml.
+In this step, the `prepare_run_workflow.R` script is executed, using the `config.yml` file generated in the previous step. Adjust the paths as necessary for your system. The processing logs and result files will be written to the output directory specified in config.yml.
 
 ### Re-run workflow
 #### Re-run MZMine preprocessing with modified parameters
@@ -157,29 +192,41 @@ All the output files will be saved in the specified result folder (path_result i
 
 ---
 
-## One step command
-To run the entire workflow in a single step, you can use the following command in powershell:
-```powershell
-docker run -it `
-    -v E:/:/mnt/e `
-    qiangao/metpipe:0.5 `
-    Rscript /wd/prepare_run_workflow.R --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF"
-```
-
----
-
 ## Guidance for non-standardized workflow
+
+### More qc types
 If your data contains more qc types than the standardized ones (e.g. BL, PO, NIST, CP), you could prepare non-standardized workflow by running the following command in powershell: 
 
 ```powershell
 docker run -it `
     -v E:/:/mnt/e `
-    qiangao/metpipe:0.5 `
-    Rscript /wd/prepare_workflow.R --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF" --qc "BL,PO,NIST,CP,ABC,DEF"
+    qiangao/metpipe:1.0 `
+    Rscript /wd/prepare_run_workflow.R --run-module prep_yaml `
+    --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF" --qc "BL,PO,NIST,CP,ABC,DEF"
 ```
 
-**--qc** argument allows users to specify all qc types included in the data, separated by commas. After running this command, a default `config.yml` file will be generated in the output directory. Check and edit the parameters in `config.yml` as needed before running the `run_workflow.R` script.
+**--qc** argument allows users to specify all qc types included in the data, separated by commas. After running this command, a default `config.yml` file will be generated in the output directory. Check and edit the parameters in `config.yml` as needed before continuing the workflow.
 
+### Non-standardized sample naming convention
+If your data does not follow the standardized sample naming convention, you can still use the pipeline by first generate a metadata template by running the following command in powershell:
+
+```powershell
+docker run -it `
+    -v E:/:/mnt/e `
+    qiangao/metpipe:1.0 `
+    Rscript /wd/prepare_run_workflow.R --run-module prep_meta `
+    --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF"
+```
+
+Fill in the metadata template with the correct sample information (e.g., Sample Name, Sample Type, Run Seq, Extraction Replicate, Technical Replicate) and save it. Then prepare the workflow by specifying the metadata template file using the `--meta` argument:
+
+```powershell
+docker run -it `
+    -v E:/:/mnt/e `
+    qiangao/metpipe:1.0 `
+    Rscript /wd/prepare_run_workflow.R --run-module prep_yaml `
+    --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF" --meta "/mnt/e/Projects/MP_workshop/peaktable/PL_LIPS_PASEF/metadata_raw.xlsx"
+```
 
 
 
