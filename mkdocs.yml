@@ -52,8 +52,10 @@ nav:
 
   - metpipe:
     - metpipe/introduction.md 
-    - Set up input folder: metpipe/setup_input_folder.md
+    - Setup: metpipe/setup.md
     - Untargeted processing pipeline: metpipe/pipeline.md
+    - Workflow description
+      - Untargeted lipidomics/metabolomics: untar_description.md
 
     #   - Preprocessing: 
     #   - Targeted peak picking: metpipe/tar.md
