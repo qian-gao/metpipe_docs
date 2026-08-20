@@ -18,11 +18,13 @@ For feature annotation, feature m/z and retention times were first matched again
 
 
 Annotated features were assigned an identification level according to confidence: 
+
 - Level 1: compounds confirmed with authentic standards
 - Level 2: putatively annotated compounds identified based on MS/MS spectral matching or diagnostic fragment evidence.
 
 ## Post processing
 The resulting peak table was post-processed in R using the following filtering criteria: 
+
 - (1) features were removed if their mean intensity in pooled QC samples was less than twice their mean intensity in blank samples; 
 - (2) only features with a mean intensity greater than 100 in pooled QC samples were retained; 
 - (3) features with a coefficient of variation (CV) greater than 30% in pooled QC samples were excluded; 
