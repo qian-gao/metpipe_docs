@@ -83,6 +83,10 @@ nav:
 extra_css:
   - css/extra.css
 
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js
+
 extra:
   generator: false
 
@@ -91,6 +95,8 @@ markdown_extensions:
       permalink: true
       toc_depth: 4
   - attr_list
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg

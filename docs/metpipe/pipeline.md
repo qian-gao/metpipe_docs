@@ -13,26 +13,30 @@ The workflow is executed in two sequential steps:
   This step parses the input (the project subfolder containing raw/mzML files), inspects the files to infer assay- and file-specific settings, and generates all required parameters (for example: preprocessing options, library paths, and other assay-specific settings). All parameters are written to config.yml for use by the next step. Related modules:
   - `prep_yaml`: generates config.yml for standardized workflow
   - `prep_meta`: generates metadata template for non-standardized workflow
-  - `qc`: qc types included in the data, e.g. BL, PO, NIST, CP, ABC, DEF
 
 - **Run workflow**  
-  This step reads the config.yml produced by prepare_workflow and executes the preprocessing and downstream processing (e.g., peak detection, alignment, and annotation) according to those parameters. Processing logs and result files are written to the project output directory. Related modules:
+  This step reads the config.yml produced by prep_yaml and executes the preprocessing and downstream processing (e.g., peak detection, alignment, and annotation) according to those parameters. Processing logs and result files are written to the project output directory. Related modules and running sequence:
   - `preprocessing`: executes preprocessing steps (e.g., peak detection, alignment, and annotation) using MZMine
   - `convert_output`: converts MZMine output to a standardized format for downstream processing
   - `qc_istd`: generates QC report for internal standards in all samples based on preprocessed peaktable before post-processing
   - `post_processing`: performs post-processing steps on the preprocessed data
   - `evaluation`: evaluates the processed data for missing distribution, QC of internal standards, normalization comparison, batch evaluation, and annotation summary
-  - `extra_processing_lip`: performs additional processing steps specific to lipidomics
+  - `extra_processing_lip`(optional): performs additional processing steps specific to lipidomics
+
+- **Stand alone modules**  
+  When the dataset is large, the preprocessing step can be split into smaller batches for parallel processing. The peaktables of the preprocessed batches can then be merged back together for downstream processing. Related modules:
   - `split_batches`: splits the dataset into smaller batches for parallel preprocessing
   - `merge_batches`: merges the peaktables of the preprocessed batches back together
   - `evaluate_merge`: evaluates the quality of the merged peaktable
+
+  The merge and evaluation steps can also be applied to the datatables of the post-processed batches. Related modules:
   - `merge_batches_datatable`: merges the datatables of the preprocessed batches back together
   - `evaluate_merge_datatable`: evaluates the quality of the merged datatable
 
 ---
 
 ## Non-standardized workflow
-For non-standardized workflows, the core processing steps are the same as for the standardized workflow. prepare_workflow still generates a default config.yml, but users may edit its parameters to accommodate non-standard inputs (for example, to point to an alternative library, change preprocessing or filtering thresholds, or modify assay-specific settings).
+For non-standardized workflows, the core processing steps are the same as for the standardized workflow. prep_yaml still generates a default config.yml, but users may provide their own metadata and edit its parameters to accommodate non-standard inputs (for example, to point to an alternative library, change preprocessing or filtering thresholds, or modify assay-specific settings).
 
 ---
 
@@ -55,7 +59,7 @@ docker run -it `
 This command mounts the E: drive to the Docker container and runs the prep module in the `prepare_run_workflow.R` script ,  specifying the raw data location. Adjust the raw folder paths and the dirve where the raw data is stored as necessary for your system. Note that the raw folder path inside the Docker container should start with `/mnt/` and use forward slashes.
 
 ### Check generated config.yml
-After running the prepare_workflow step, a `config.yml` file will be generated in the output directory. Review this file to ensure that all parameters are correctly set for your dataset. If you are using a non-standardized workflow, you may need to edit this file to adjust settings such as library paths or preprocessing options.
+After running the prep_yaml step, a `config.yml` file will be generated in the output directory. Review this file to ensure that all parameters are correctly set for your dataset. If you are using a non-standardized workflow, you may need to edit this file to adjust settings such as library paths or preprocessing options.
 
 The `config.yml` file contains all the necessary parameters for the subsequent processing step, including:
 
@@ -171,12 +175,12 @@ In this step, the `prepare_run_workflow.R` script is executed, using the `config
 
 ### Re-run workflow
 #### Re-run MZMine preprocessing with modified parameters
-In the initial run of the workflow, default MZMine processing parameters are generated and saved in pos/neg folders inside the result folder. To modify and re-run MZMine preprocessing with custom parameters, edit the `mzmine_parameters_pos/neg.mzbatch` files in the respective pos/neg folders. After making the desired changes, remove the preprocessing output files in the previous run in pos/neg folder, and execute the run_workflow.ps1 script again.
+In the initial run of the workflow, default MZMine processing parameters are generated and saved in pos/neg folders inside the result folder. To modify and re-run MZMine preprocessing with custom parameters, edit the `mzmine_parameters_pos/neg.mzbatch` files in the respective pos/neg folders. After making the desired changes, remove the preprocessing output files in the previous run in pos/neg folder, only keep the .mzbatch files, and execute the run_workflow.ps1 script again.
 
 To better understand the MZMine parameters, the .mzbatch files can be opened in MZMine GUI (Project -> Batch mode -> Load). After editing and saving the parameters in MZMine GUI, export the updated parameters back to the .mzbatch files. Then, re-run the run_workflow.R script as shown above.
 
 #### Re-run downstream processing with modified parameters
-To re-run the downstream processing with modified parameters (e.g., filtering thresholds, normalization methods), edit the `config.yml` file generated in the prepare_workflow step. After making the desired changes, execute the run_workflow.ps1 script again.
+To re-run the downstream processing with modified parameters (e.g., filtering thresholds, normalization methods), edit the `config.yml` file generated in the prep_yaml step. After making the desired changes, execute the run_workflow.ps1 script again.
 
 
 ### Output
@@ -227,6 +231,73 @@ docker run -it `
     Rscript /wd/prepare_run_workflow.R --run-module prep_yaml `
     --raw "/mnt/e/Projects/MP_workshop/raw/PL_LIPS_PASEF" --meta "/mnt/e/Projects/MP_workshop/peaktable/PL_LIPS_PASEF/metadata_raw.xlsx"
 ```
+
+---
+
+## Guidance for large datasets
+When the dataset is large, the preprocessing step can be split into smaller batches for parallel processing. The peaktables of the preprocessed batches can then be merged back together for downstream processing. To do this, run the prep_yaml step first, then modify the `config.yml` file to specify the sample types to be used for preprocessing in all batches as overlapping samples, and specify the batch assignments. It is also possible to specify sample names as overlapping samples. The pipeline will take the union of the two arguments (overlap_by_name, overlap_sample_types) as the final set of overlapping samples. For example, to split the dataset into 4 batches and run the samples with sample types "NIST,PO,PO1205,PO25,PO50,PO100,PO200,BL,CP,PO" in all 4 batches with the following assignments:
+
+```yaml
+overlap_by_name: ''
+overlap_sample_types: 'NIST,PO,PO1205,PO25,PO50,PO100,PO200,BL,CP'
+batch_assignments: 'list(c(1:320), c(321:655), c(656:991), c(992:1308))'
+```
+
+Then run the split_batches module to split the dataset into smaller batches. 
+
+```powershell
+docker run -it `
+    -v E:/:/mnt/e `
+    qiangao/metpipe:1.0 `
+    Rscript /wd/prepare_run_workflow.R `
+    --config"/mnt/e/Projects/MP_workshop/peaktable/PL_LIPS_PASEF/config.yml" `
+    --run-module split_batches
+```
+
+The `split_batches` module will create subfolders for each batch in the output directory and generate a `config_batch.yml` file in each batch subfolder. Check and edit the parameters in each `config_batch.yml` as needed before continuing the workflow. After splitting the dataset into batches, start the run from the preprocessing step for each batch separately:
+
+```powershell
+docker run -it `
+    -v E:/:/mnt/e `
+    qiangao/metpipe:1.0 `
+    Rscript /wd/prepare_run_workflow.R `
+    --config /maps/projects/metabolomics/data/MP208_FLINC/peaktable/PL_LIPS_PASEF/PL_LIPS_PASEF_b1/config_b1.yml `
+    --start-from preprocess
+```
+
+After all batches are preprocessed, run the `merge_batches` module to merge the peaktables of the preprocessed batches back together:
+
+```powershell
+docker run -it `
+    -v E:/:/mnt/e `
+    qiangao/metpipe:1.0 `
+    Rscript /wd/prepare_run_workflow.R `
+    --config"/mnt/e/Projects/MP_workshop/peaktable/PL_LIPS_PASEF/config.yml" `
+    --run-module merge_batches
+```
+
+Then run the `evaluate_merge` module to evaluate the quality of the merged peaktable:
+
+```powershell
+docker run -it `
+    -v E:/:/mnt/e `
+    qiangao/metpipe:1.0 `
+    Rscript /wd/prepare_run_workflow.R `
+    --config"/mnt/e/Projects/MP_workshop/peaktable/PL_LIPS_PASEF/config.yml" `
+    --run-module evaluate_merge
+```
+
+Finally, run the downstream processing steps on the merged peaktable:
+
+```powershell
+docker run -it `
+    -v E:/:/mnt/e `
+    qiangao/metpipe:1.0 `
+    Rscript /wd/prepare_run_workflow.R `
+    --config"/mnt/e/Projects/MP_workshop/peaktable/PL_LIPS_PASEF/config.yml" `
+    --start-from qc
+```
+
 
 
 
